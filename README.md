@@ -20,12 +20,12 @@ In SQLCMD:
     > GO  
     > CREATE TABLE bands (id INT IDENTITY(1,1), name VARCHAR(255));  
     > GO
-    > CREATE TABLE concerts (id INT IDENTITY(1,1), venue_id INT, band_id INT);
+    > CREATE TABLE bands_venues (id INT IDENTITY(1,1), band_id INT, venue_id INT);
     > GO
 
 In MSSQL:
-1. right-click database >
--
+1. right-click database > Tasks > Back Up > Ok
+- right-click database > Tasks > Restore > Database > in Destination Database replace band_tracker with band_tracker_test > Ok
 
 *_Requires DNU, DNX, MSSQL, and Mono_
 * Clone to local machine
