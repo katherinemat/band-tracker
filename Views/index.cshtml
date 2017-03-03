@@ -1,0 +1,31 @@
+@{
+    Layout="Shared/_Layout.cshtml";
+}
+@if(@Model["bands"].Count == 0 && @Model["venues"].Count == 0)
+{
+    <h2>Add a new concert</h2>
+    <div class="row">
+        <form class="col s12" id="new-band-venue" action="/" method="post">
+
+            <div class="input-field col s12">
+                <input type="text" name="band" id="band">
+                <label for="band">Band Name</label>
+            </div>
+
+            <div class="input-field col s12">
+                <input type="text" name="venue" id="venue">
+                <label for="venue">Venue Name</label>
+            </div>
+
+            <button type="submit" class="btn btn-lg btn-info">Submit</button>
+        </form>
+    </div>
+}
+else
+{
+    @foreach(var band in @Model["bands"])
+    {
+        <h2>@band.GetName()</h2>
+
+    }
+}
