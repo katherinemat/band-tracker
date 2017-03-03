@@ -60,6 +60,18 @@ namespace BandTracker
             Assert.Equal(expected, allVenuesBand1);
         }
 
+        [Fact]
+        public void Find_BandById_FoundBand()
+        {
+            Band newBand1 = new Band("CCR");
+            newBand1.Save();
+            Band newBand2 = new Band("Lily Allen");
+            newBand2.Save();
+
+            Band foundBand = Band.Find(newBand2.GetId());
+            Assert.Equal(foundBand, newBand2);
+        }
+
         public void Dispose()
         {
             Band.DeleteAll();
