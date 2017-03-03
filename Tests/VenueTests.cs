@@ -88,6 +88,18 @@ namespace BandTracker
             Assert.Equal(expected, allBandsVenue1);
         }
 
+        [Fact]
+        public void Find_VenueById_FoundVenue()
+        {
+            Venue newVenue1 = new Venue("Hollywood Bowl");
+            newVenue1.Save();
+            Venue newVenue2 = new Venue("Irvine Amphitheater");
+            newVenue2.Save();
+
+            Venue foundVenue = Venue.Find(newVenue2.GetId());
+            Assert.Equal(foundVenue, newVenue2);
+        }
+
         public void Dispose()
         {
             Venue.DeleteAll();
