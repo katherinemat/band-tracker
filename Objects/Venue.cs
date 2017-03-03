@@ -106,6 +106,7 @@ namespace BandTracker
             DB.CloseSqlConnection(rdr, conn);
         }
 
+//when i delete a venue, what happens to venue, band pair in join table?
         public void Delete()
         {
             SqlConnection conn = DB.Connection();

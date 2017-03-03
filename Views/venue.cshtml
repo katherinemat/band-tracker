@@ -1,0 +1,51 @@
+@{
+    Layout="Shared/_Layout.cshtml";
+}
+
+<h2>@Model["venue"].GetName()</h2>
+
+@foreach(var band in @Model["venue"].GetBands())
+{
+    <p><a href="/band/@band.GetId()">@band.GetName()</a></p>
+}
+
+<h4>Add a new band</h4>
+<div class="row">
+    <form class="col s12" id="new-band-for-venue" action="/venue/@Model["venue"].GetId()" method="post">
+
+        <div class="input-field col s12">
+            <select name="band">
+                <option value="0"></option>
+                @foreach (var band in @Model["bands"])
+                {
+                    <option value="@band.GetId()">@band.GetName()</option>
+                }
+            </select>
+            <label for="band">Band</label>
+        </div>
+
+        <button type="submit" name="button" class="btn btn-lg btn-info">Submit</button>
+    </form>
+</div>
+
+<h4>Update Name of Venue</h4>
+<div class="row">
+    <form action="/venue/edit/@Model["venue"].GetId()" method="post" id="update-venue">
+        <input type="hidden" name="_method" value="PATCH">
+
+        <div class="input-field col s12">
+            <input type="text" name="new-venue-name" id="new-venue-name">
+            <label for="new-venue-name">New Name</label>
+        </div>
+
+        <button type="submit" class="btn btn-lg btn-info">Update</button>
+    </form>
+</div>
+
+<h4>Delete this Venue</h4>
+<div class="row">
+    <form class="col s12" id="delete-venue" action="/venue/deleted/@Model["venue"].GetId()" method="post">
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit" class="btn btn-lg btn-warning">Delete</button>
+    </form>
+</div>
