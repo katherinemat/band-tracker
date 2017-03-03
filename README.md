@@ -36,7 +36,7 @@ In MSSQL:
 ## Specifications
 
 Band:
-1. Create band object; input: new band called CCR; output: concerts
+1. Create band object; input: new band called CCR; output: CCR
 - Create band that has played at certain venues; input: CCR has played at Hollywood Bowl; output: CCR, Hollywood Bowl
 - Get all venues for a single band; input: CCR; output: Hollywood Bowl, Irvine Amphitheater, Radio City Music Hall
 - Add venue for a band using a join statement; input: CCR add Santa Barbara Bowl; output: Hollywood Bowl, Irvine Amphitheater, Radio City Music Hall, Santa Barbara Bowl
