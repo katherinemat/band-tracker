@@ -40,6 +40,26 @@ namespace BandTracker
             Assert.Equal(testId, result);
         }
 
+        [Fact]
+        public void AddVenue_VenueAndBand_AllBandVenues()
+        {
+            Band newBand1 = new Band("CCR");
+            newBand1.Save();
+
+            Venue newVenue1 = new Venue("Radio City Music Hall");
+            newVenue1.Save();
+            Venue newVenue2 = new Venue("Hollywood Bowl");
+            newVenue2.Save();
+
+            newBand1.AddVenue(newVenue1.GetId());
+            newBand1.AddVenue(newVenue2.GetId());
+
+            List<Venue> allVenuesBand1 = newBand1.GetVenues();
+            List<Venue> expected = new List<Venue>{newVenue1, newVenue2};
+
+            Assert.Equal(expected, allVenuesBand1);
+        }
+
         public void Dispose()
         {
             Band.DeleteAll();
