@@ -85,6 +85,27 @@ namespace BandTracker
             DB.CloseSqlConnection(rdr, conn);
         }
 
+        public void UpdateName(string newName)
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("UPDATE venues SET name = @NewName OUTPUT INSERTED.name WHERE id=@VenueId;", conn);
+
+            cmd.Parameters.Add(new SqlParameter("@NewName", newName));
+            cmd.Parameters.Add(new SqlParameter("@VenueId", this.GetId()));
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+//can't i just set _name = newName ?
+            while(rdr.Read())
+            {
+                this._name = rdr.GetString(0);
+            }
+
+            DB.CloseSqlConnection(rdr, conn);
+        }
+
         public static void DeleteAll()
         {
             DB.TableDeleteAll("venues");

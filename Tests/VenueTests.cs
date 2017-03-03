@@ -40,6 +40,19 @@ namespace BandTracker
             Assert.Equal(testId, result);
         }
 
+        [Fact]
+        public void UpdateName_OneVenue_NewName()
+        {
+            Venue newVenue = new Venue("Radi City");
+            newVenue.Save();
+
+            newVenue.UpdateName("Radio City Music Hall");
+
+            string newName = newVenue.GetName();
+
+            Assert.Equal("Radio City Music Hall", newName);
+        }
+
         public void Dispose()
         {
             Venue.DeleteAll();
