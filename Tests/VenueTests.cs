@@ -53,6 +53,21 @@ namespace BandTracker
             Assert.Equal("Radio City Music Hall", newName);
         }
 
+        [Fact]
+        public void Delete_OneVenue_VenueDeleted()
+        {
+            Venue newVenue1 = new Venue("Radio City Music Hall");
+            newVenue1.Save();
+            Venue newVenue2 = new Venue("Hollywood Bowl");
+            newVenue2.Save();
+            newVenue1.Delete();
+
+            List<Venue> allVenues = Venue.GetAll();
+            List<Venue> expected = new List<Venue>{newVenue2};
+
+            Assert.Equal(expected, allVenues);
+        }
+
         public void Dispose()
         {
             Venue.DeleteAll();
